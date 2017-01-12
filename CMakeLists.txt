@@ -15,10 +15,12 @@ source_files
 )
 
 #find_package ( OSG )
-find_package ( OSG )
-find_package ( OSGDB )
-find_package ( OSGUTIL )
-find_package ( OSGVIEWER )
+find_package ( osg )
+find_package ( osgDB )
+find_package ( osgUtil )
+find_package ( osgViewer )
+find_package ( osgGA )
+find_package ( OpenThreads )
 
 MESSAGE(STATUS "OSG_INCLUDE_DIR = ${OSG_INCLUDE_DIR}")
 INCLUDE_DIRECTORIES(${OSG_INCLUDE_DIR})
@@ -26,9 +28,9 @@ INCLUDE_DIRECTORIES(${OSG_INCLUDE_DIR})
 LINK_DIRECTORIES( ${OSG_LIB_DIR})
 
 #augmentation
-add_executable(tpavion ${source_files} )
+add_executable(tpavion ${source_files})
 
-TARGET_LINK_LIBRARIES(tpavion ${OSG_LIBRARY} ${OSGDB_LIBRARY} ${OSGUTIL_LIBRARY} ${OSGVIEWER_LIBRARY})
+TARGET_LINK_LIBRARIES(tpavion ${OSG_LIBRARY} ${OSGGA_LIBRARY} ${OSGDB_LIBRARY} ${OSGUTIL_LIBRARY} ${OSGVIEWER_LIBRARY} ${OPENTHREADS_LIBRARY})
 
 message("CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
 

@@ -10,7 +10,7 @@ protected:
 	osg::Vec3f position;
 	osg::Vec3f direction; // direction actuelle
 	osg::Vec3f up; // vecteur up
-	bool cooldown; // est ce qu'on a tiré le tour d'avant
+	bool cooldown; // est ce qu'on a tire le tour d'avant
 	bool tir; // est ce qu'on tire 
 	float angle; // demandez à mael xD
 	float cap; // demandez à mael  (c'est de la 3D lol)
@@ -40,11 +40,11 @@ public:
 	void setCamp(bool _camp){ camp=_camp;};
 	void setId(bool _id){ id=_id;};
 
-	virtual void avancer(int cube_size)=0; //On a défini la fonction vide dans le cpp
+	virtual void avancer(int cube_size)=0; //On a defini la fonction vide dans le cpp
 	void tourner();
 	int tirer(int taillecube, std::vector<Avion*> &ListeAvions);
 	virtual void strategie(std::vector<Avion*> &v)=0;
 	~Avion();
 	
-	static void DetecteCollision(int cube_size, std::vector<Avion*> &avions); //Méthode pour détruire les avions en collision
+	static void DetecteCollision(int cube_size, std::vector<Avion*> &avions); //Methode pour detruire les avions en collision
 };

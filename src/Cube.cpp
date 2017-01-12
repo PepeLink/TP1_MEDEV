@@ -288,13 +288,13 @@ void Cube::afficherAvion() {
 	patAvionEnnemi2->setAttitude(attitude);
 }
 
-void Cube::elimination(vector<int> ListeTouchés, vector<Avion*> &ListeAvion) // Supprime les avions contenus dans le vecteur Listetouchés du vecteur principal ListeAvion à partir de leurs Id
+void Cube::elimination(vector<int> ListeTouches, vector<Avion*> &ListeAvion) // Supprime les avions contenus dans le vecteur Listetouches du vecteur principal ListeAvion à partir de leurs Id
 {
-    for (unsigned int i=0;i<ListeTouchés.size();i++) // on élimine les avions touchés
+    for (unsigned int i=0;i<ListeTouches.size();i++) // on elimine les avions touches
             {
                 for(unsigned int j= 0; j<ListeAvion.size();j++)
                 {
-                    if (ListeAvion[j]->getId() == ListeTouchés[i])
+                    if (ListeAvion[j]->getId() == ListeTouches[i])
                     {
                          ListeAvion.erase(ListeAvion.begin() + j);
                     }
@@ -336,7 +336,7 @@ void Cube::mainLoop() {
     ListeAvion[0]->DetecteCollision(n,ListeAvion);
 
     vector<int> ListeAvionsTouches ;
-    for (unsigned int i=0;i<ListeAvion.size();i++) // Chaque avion Tire et on récupère les id des avions touchés
+    for (unsigned int i=0;i<ListeAvion.size();i++) // Chaque avion Tire et on recupère les id des avions touches
     {
         int idTouche = ListeAvion[i]->tirer(n, ListeAvion);
         if (idTouche != -1 )

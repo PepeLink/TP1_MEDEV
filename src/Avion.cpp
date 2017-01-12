@@ -1,5 +1,5 @@
-#include "Avion.h"
-#include <osg/vec3f>
+﻿#include "Avion.h"
+#include <osg/Vec3f>
 #include <osg/Geometry>
 
 Avion::Avion(){
@@ -27,7 +27,7 @@ void Avion::tourner()
 
 void Avion::DetecteCollision(int cube_size, std::vector<Avion*> &avions){
     std::vector<int> idem;
-    for (unsigned int i = 0; i<avions.size(); i++){//ici, on vérifie les murs et on compare les positions relatives (voir si deux sont ds le meme cube) 
+    for (unsigned int i = 0; i<avions.size(); i++){//ici, on verifie les murs et on compare les positions relatives (voir si deux sont ds le meme cube) 
         osg::Vec3f pos1 = avions[i]->getPosition();
         if (pos1[0] < 0 || pos1[0] > cube_size || pos1[1] < 0 || pos1[1] > cube_size || pos1[2] < 0 || pos1[2] > cube_size ){
             idem.push_back(i);
@@ -40,7 +40,7 @@ void Avion::DetecteCollision(int cube_size, std::vector<Avion*> &avions){
             }
         }
     }
-    for (unsigned int i = 0; i< idem.size()-1; i++){//on trie la liste des index des avions à détruire dans l'ordre décroissant pour éviter les problèmes
+    for (unsigned int i = 0; i< idem.size()-1; i++){//on trie la liste des index des avions à detruire dans l'ordre decroissant pour eviter les problèmes
         for (unsigned int j = 0; j<idem.size()-i;j++){//de chgment d'index lors de l'erase
             if (idem[j]<idem[j+1]){
                 int a = idem[j];
@@ -59,14 +59,14 @@ void Avion::DetecteCollision(int cube_size, std::vector<Avion*> &avions){
     }
 }
 
-int Avion::tirer(int taillecube, std::vector<Avion*> &ListeAvions) // Renvoie l'identifiant de l'avion touché
+int Avion::tirer(int taillecube, std::vector<Avion*> &ListeAvions) // Renvoie l'identifiant de l'avion touche
 {
 	if (cooldown==false)
 	{
 		setCooldown(true);
 		//****Initialisation****
 
-		//le pas de de déplacement du projectile
+		//le pas de de deplacement du projectile
 		float eps=0.01;
 
 		//Position du projectile
@@ -82,9 +82,9 @@ int Avion::tirer(int taillecube, std::vector<Avion*> &ListeAvions) // Renvoie l'
 		directionProj[1]=directionProj[1]/norme;
 		directionProj[2]=directionProj[2]/norme;
 
-		//****Création de la boucle de tir***
+		//****Creation de la boucle de tir***
 
-		//Si un avion est touché la boucle s'arrête
+		//Si un avion est touche la boucle s'arrête
 		//si le tir sort du cube aussi
 		while ((posProj[0]<taillecube)||(posProj[1]<taillecube)||(posProj[2]<taillecube))
 		{
@@ -93,24 +93,24 @@ int Avion::tirer(int taillecube, std::vector<Avion*> &ListeAvions) // Renvoie l'
 			{
 				osg::Vec3f posAvion=ListeAvions[n]->getPosition();
 		// On regarde si un avion et le projectile se trouvent dans la même case
-		// Auquel cas ils ont les mêmes coordonnées entières
+		// Auquel cas ils ont les mêmes coordonnees entières
 				if ((floor(posAvion[0])==floor(posProj[0]))&&(floor(posAvion[1])==floor(posProj[1]))&&(floor(posAvion[2])==floor(posProj[2])))
 				{
-		// On vérifie que l'avion tireur ne s'auto-détruise pas avec son propre projectile
+		// On verifie que l'avion tireur ne s'auto-detruise pas avec son propre projectile
 					if (posAvion!=position)
 					{
-						//Renvoie la position de l'avion dans le vecteur d'avions si un avion a été touché
+						//Renvoie la position de l'avion dans le vecteur d'avions si un avion a ete touche
 						return (ListeAvions[n]->getId());
 					}
 				}
 			}
-		// On actualise les coordonnées de la position du projectile
+		// On actualise les coordonnees de la position du projectile
 			posProj[0]=posProj[0]+eps*directionProj[0];
 			posProj[1]=posProj[1]+eps*directionProj[1];
 			posProj[2]=posProj[2]+eps*directionProj[2];
 		}
 	}
 
-	//Renvoie -1 si aucun avion n'a pas été touché
+	//Renvoie -1 si aucun avion n'a pas ete touche
 	return (-1);
 }
